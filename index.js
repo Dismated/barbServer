@@ -46,7 +46,11 @@ app.post("/api/products", (request, response, next) => {
     return response.status(400).json({ error: "content missing" });
   }
 
-  const product = new Product(body);
+  const product = new Product({
+    title: body.title,
+    image: body.image,
+    price: body.price,
+  });
 
   try {
     const savedProduct = product.save();

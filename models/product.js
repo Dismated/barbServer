@@ -13,9 +13,8 @@ try {
 
 const productSchema = new mongoose.Schema({
   title: String,
-  author: String,
-  url: String,
-  likes: Number,
+  image: String,
+  price: Number,
 });
 
 productSchema.set("toJSON", {
