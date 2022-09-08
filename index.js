@@ -17,9 +17,9 @@ app.use(cors());
 app.use(express.json());
 app.use(requestLogger);
 
-app.get("/api/products", (request, response) => {
+app.get("/api/products", async (request, response) => {
   try {
-    const products = Product.find({});
+    const products = await Product.find({});
     response.json(products);
   } catch (error) {
     console.log(error);
