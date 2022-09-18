@@ -11,18 +11,18 @@ try {
   console.log("error connecting to MongoDB:", error.message);
 }
 
-const productSchema = new mongoose.Schema({
-  title: String,
-  image: String,
-  price: Number,
-});
-
-productSchema.set("toJSON", {
-  transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id;
-    delete returnedObject.__v;
+const productSchema = new mongoose.Schema(
+  {
+    title: { type: String, required: true },
+    image: { type: String, required: true },
+    price: { type: Number, required: true },
+    quantity: { type: Number, default: 1 },
+    folder: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Folder",
+    },
   },
-});
+  { versionKey: false }
+);
 
 module.exports = mongoose.model("Product", productSchema);
